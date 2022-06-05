@@ -8,6 +8,7 @@
 hs_err_pid*
 
 # Maven
+.mvn/
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -19,6 +20,8 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
 
 # IntelliJ
 out/
@@ -27,3 +30,6 @@ out/
 *.iml
 *.ipr
 *.iws
+
+# Other
+HELP.md
