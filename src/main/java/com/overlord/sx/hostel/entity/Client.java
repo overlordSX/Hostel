@@ -12,10 +12,11 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"phone", "email"})})
 public class Client implements AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -29,6 +30,8 @@ public class Client implements AbstractEntity {
     private String email;
 
     @OneToMany
-    @JoinColumn(name = "order_id", nullable = false)
-    private Set<Order> order;
+            (fetch = FetchType.EAGER,
+                    cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+                    mappedBy = "client")
+    private Set<Order> orders;
 }

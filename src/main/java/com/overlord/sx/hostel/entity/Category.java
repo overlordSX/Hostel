@@ -16,18 +16,21 @@ import java.util.Set;
 public class Category implements AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
 
     @ManyToMany
-    @JoinTable(name="setOfFacilities",
-    joinColumns = @JoinColumn(name="category_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "householdAppliances", referencedColumnName = "id")
+    @JoinTable(name = "setOfFacilities",
+            joinColumns = @JoinColumn(name = "categories", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "householdAppliances", referencedColumnName = "id")
     )
     private Set<HouseholdAppliances> householdAppliances;
 
-    @ManyToOne
-    private Room room;
+    @OneToMany
+            (fetch = FetchType.EAGER,
+                    cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+                    mappedBy = "category")
+    private Set<Room> rooms;
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 public class Room implements AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private int price;
@@ -31,15 +31,22 @@ public class Room implements AbstractEntity {
     private int floor;
 
     //нифигашеньки не понял почему одинКоМногим, я думал МногиеВодного и без сета
-    @OneToMany
-    private Set<Category> category;
+
+    @ManyToOne
+    private Category category;
 
     @OneToMany
-    @JoinColumn(name = "photo_id", nullable = false)
-    private Set<Photo> photo;
+            (fetch = FetchType.EAGER,
+                    cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+                    mappedBy = "room")
+    private Set<Photo> photos;
 
     @OneToMany
-    @JoinColumn(name = "order_id", nullable = false)
-    private Set<Order> order;
+            (fetch = FetchType.EAGER,
+                    cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+                    mappedBy = "room")
+    private Set<Order> orders;
+    //@ManyToOne
+    //private Order order;
 
 }
