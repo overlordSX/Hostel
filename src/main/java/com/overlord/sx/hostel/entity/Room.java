@@ -45,7 +45,7 @@ public class Room implements AbstractEntity {
             (fetch = FetchType.EAGER,
                     cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
                     mappedBy = "room")
-    private Set<Order> orders;
+    private Set<Booking> bookings;
     //@ManyToOne
     //private Order order;
 

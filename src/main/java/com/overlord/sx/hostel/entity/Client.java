@@ -33,5 +33,5 @@ public class Client implements AbstractEntity {
             (fetch = FetchType.EAGER,
                     cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
                     mappedBy = "client")
-    private Set<Order> orders;
+    private Set<Booking> bookings;
 }

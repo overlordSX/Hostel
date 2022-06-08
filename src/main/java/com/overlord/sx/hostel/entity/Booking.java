@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Order implements AbstractEntity {
+public class Booking implements AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
